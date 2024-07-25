@@ -10,7 +10,8 @@ const titleInput = document.getElementById("title-input");
 const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 
-const taskData = JSON.parse(localStorage.getItem("data")) || [];
+const parsed = JSON.parse(localStorage.getItem("data"));
+const taskData = parsed ? parsed : [];
 let currentTask = {};
 
 const addOrUpdateTask = () => {
@@ -29,6 +30,7 @@ const addOrUpdateTask = () => {
 };
 
 const updateTaskContainer = () => {
+  tasksContainer.innerHTML = "";
   taskData.forEach(({ id, title, date, description }) => {
     tasksContainer.innerHTML += `
       <div class="task" id="${id}">
